@@ -6,7 +6,7 @@
 
 **Deadline:** Saturday 5th September 2026, 23:59 WAT (UTC+1) — end of day
 
-**Task order & assigned features:** [Check the tracking sheet]
+**Task order & assigned features:** 
 
 (https://docs.google.com/spreadsheets/d/1tP0R5HKIEVik2rtYdtUWqukhnEcDX2aY/edit?gid=1946907848#gid=1946907848) — find your name and your assigned feature before you start.
 If you still wish to join request for request access on the sheet and update your name accross the next feture.
@@ -19,7 +19,9 @@ If you still wish to join request for request access on the sheet and update you
 
 install Postman and VScode
 
-1. **Postman test scripting** — https://www.youtube.com/playlist?list=PLww5VpczsP-NLjmrWG-LllZ79MmHq1oMW
+1. https://medium.com/@agboolaadenike88/git-for-qa-engineers-the-branching-strategy-nobody-taught-you-48786749d3b6
+
+2.**Postman test scripting** — https://www.youtube.com/playlist?list=PLww5VpczsP-NLjmrWG-LllZ79MmHq1oMW
    _Covers writing assertions in Postman and running collections from the CLI._
 2. **OWASP API Security Top 10:** https://owasp.org/www-project-api-security/
 
