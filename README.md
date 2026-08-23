@@ -1,10 +1,15 @@
 # GIT Challenge: API Testing Extension — Automation with Test Scripts
 
 **Target API:** DummyJSON — https://dummyjson.com/docs
+
 **Repository:** `QualityTechies/git-challenge-postman`
+
 **Deadline:** Friday 4 September 2026, 23:59 WAT (UTC+1) — end of day
+
 **Task order & assigned features:** [Check the tracking sheet]
+
 (https://docs.google.com/spreadsheets/d/1tP0R5HKIEVik2rtYdtUWqukhnEcDX2aY/edit?gid=1946907848#gid=1946907848) — find your name and your assigned feature before you start.
+
 **Submission:** Pull request to `main`, plus your row on the assessment tracking sheet
 
 ---
