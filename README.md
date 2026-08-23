@@ -222,5 +222,5 @@ If you would rather everyone work in one repository instead of forking, the flow
 4. Commit and `git push -u origin feature/<your-branch>`
 5. Open the PR inside the same repository.
 
-**Note**
+## Note :
 Best Practice is to use environment variables but for this task we shall be using collection variable to keep things compact
