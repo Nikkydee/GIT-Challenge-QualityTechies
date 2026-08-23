@@ -17,6 +17,8 @@ If you still wish to join request for request access on the sheet and update you
 
 ## Study Material
 
+install Postman and VScode
+
 1. **Postman test scripting** — https://www.youtube.com/playlist?list=PLww5VpczsP-NLjmrWG-LllZ79MmHq1oMW
    _Covers writing assertions in Postman and running collections from the CLI._
 2. **OWASP API Security Top 10:** https://owasp.org/www-project-api-security/
@@ -71,8 +73,8 @@ Understanding the difference between a mocked write and a real one is part of wh
 - Chain values between requests with `pm.collectionVariables.set()`.
 - Validate response structure with a schema assertion (`ajv` and `tv4` are both available in the sandbox), not only field-by-field checks.
 
-### 3. Newman Execution & Reporting
-
+### 3. Newman Execution & Reporting (Optional)
+Attach your report - with your name saved
 Install once:
 
 ```bash
