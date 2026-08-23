@@ -9,6 +9,7 @@
 **Task order & assigned features:** [Check the tracking sheet]
 
 (https://docs.google.com/spreadsheets/d/1tP0R5HKIEVik2rtYdtUWqukhnEcDX2aY/edit?gid=1946907848#gid=1946907848) — find your name and your assigned feature before you start.
+If you still wish to join request for request access on the sheet and update the next feature
 
 **Submission:** Pull request to `main`, plus your row on the assessment tracking sheet
 
