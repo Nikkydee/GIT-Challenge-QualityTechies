@@ -3,6 +3,7 @@
 **Target API:** DummyJSON — https://dummyjson.com/docs
 **Repository:** `QualityTechies/git-challenge-postman`
 **Deadline:** Friday 4 September 2026, 23:59 WAT (UTC+1) — end of day
+**Task order & assigned features:** [Check the tracking sheet](https://docs.google.com/spreadsheets/d/1tP0R5HKIEVik2rtYdtUWqukhnEcDX2aY/edit?gid=1946907848#gid=1946907848) — find your name and your assigned feature before you start.
 **Submission:** Pull request to `main`, plus your row on the assessment tracking sheet
 
 ---
@@ -222,5 +223,4 @@ If you would rather everyone work in one repository instead of forking, the flow
 4. Commit and `git push -u origin feature/<your-branch>`
 5. Open the PR inside the same repository.
 
-## Note :
-Best Practice is to use environment variables but for this task we shall be using collection variable to keep things compact
+**Pick one model and delete the other.** Mixing them — forking one repository and pushing to a different one — is what produces the "remote origin already exists" and "permission denied" errors that stall people on day one.
