@@ -1,2 +1,2 @@
-Michael Adeyeye |  @mikekoe   | Created Postman and Newman API test suite and generated reports
+Michael Adeyeye |  @mikekoe   | Created Postman and Newman API test suite to get all product categories for dummyjson website and generated reports based on them
 - Your Name | @github-handle | one thing you contributed to this challenge
