@@ -1,0 +1,298 @@
+{
+  "info": {
+    "_postman_id": "5af8db4d-5b57-4140-83c2-81ce09fa449b",
+    "name": "Dummy json",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54218083",
+    "_collection_link": "https://go.postman.co/collection/54218083-5af8db4d-5b57-4140-83c2-81ce09fa449b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Error-handling for Get Requests",
+      "item": [
+        {
+          "name": "Get non-existent products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 404 for non-existent product\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"Error response contains a message\", function () {  ",
+                  "    pm.expect(jsonData).to.have.property(\"message\");",
+                  "    pm.expect(jsonData.message).to.be.a(\"string\").and.to.not.be.empty;",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{dummy_base_url}}/products/99172",
+              "host": [
+                "{{dummy_base_url}}"
+              ],
+              "path": [
+                "products",
+                "99172"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get invalid (non-numeric) product ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404 or 400 for non-numeric ID\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 404]);",
+                  "});",
+                  "",
+                  "pm.test(\"Error Response is valid JSON\", function () {",
+                  "    pm.response.to.be.json;",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{dummy_base_url}}/products/abc",
+              "host": [
+                "{{dummy_base_url}}"
+              ],
+              "path": [
+                "products",
+                "abc"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication (Access endpoint only)",
+      "item": [
+        {
+          "name": "Access Dummy Json endpoint with a valid token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 with valid token\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "   {\n       \"username\": \"{{username}}\",\n       \"password\": \"{{password}}\",\n       \"expiresInMins\": 30\n   }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{dummy_base_url}}/auth/login",
+              "host": [
+                "{{dummy_base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get current authenticated dummy json user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 when user is authenticated\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{dummy_base_url}}/auth/me",
+              "host": [
+                "{{dummy_base_url}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get-all-Products-categories",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.test(\"base_url is not hardcoded but defined in the collection\", function () {",
+              "    pm.expect(pm.collectionVariables.get(\"dummy_base_url\")).to.exist;",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 1000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "",
+              "pm.test(\"Response body is an array of category objects\", function () {",
+              "    pm.expect(jsonData).to.be.an(\"array\");",
+              "});",
+              "",
+              "pm.test(\"Each category object contains slug, name, and url\", function () {",
+              "    jsonData.forEach(function (category) {",
+              "        pm.expect(category).to.be.an(\"object\");",
+              "        pm.expect(category).to.have.property(\"slug\");",
+              "        pm.expect(category).to.have.property(\"name\");",
+              "        pm.expect(category).to.have.property(\"url\");",
+              "    });",
+              "});",
+              "",
+              "pm.test(\"Category 'groceries' exists\", function () {",
+              "    const found = jsonData.some(item => item.slug === \"groceries\");",
+              "    pm.expect(found).to.be.true;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{dummy_base_url}}/products/categories",
+          "host": [
+            "{{dummy_base_url}}"
+          ],
+          "path": [
+            "products",
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "console.log(`[Response Time] ${pm.info.requestName}: ${pm.response.responseTime}ms`);",
+          "",
+          "pm.test(`Response time logged (${pm.response.responseTime}ms)`, function () {",
+          "    pm.expect(pm.response.responseTime).to.be.a(\"number\");",
+          "});"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "dummy_base_url",
+      "value": "https://dummyjson.com/"
+    }
+  ]
+}
