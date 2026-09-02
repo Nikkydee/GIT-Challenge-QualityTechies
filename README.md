@@ -235,3 +235,47 @@ If you would rather everyone work in one repository instead of forking, the flow
 5. Open the PR inside the same repository.
 
 **Pick one model and delete the other.** Mixing them — forking one repository and pushing to a different one — is what produces the "remote origin already exists" and "permission denied" errors that stall people on day one.
+
+---
+
+## Get All Products Categories by Michael Adeyeye
+### Assigned Feature
+I was assigned the Get-all-Products-categories endpoint `GET /products/categories` of the DummyJSON API. My scope covered building an automated Postman/Newman test suite for this endpoint, including positive tests, negative tests, schema validation, and comprehensive reporting.
+
+---
+### Installation
+1. Clone the repository `git clone https://github.com/QualityTechies/git-challenge-postman.git`. **You should have already been added as a collaborator**
+2. Switch from the main repo to your created repo `git switch -c feature/getAllProductsCategories`
+3. Download the `DummyJson -QualityTechies.postman_collection.json` to your local storage and import to Postman
+4. On Postman,using the imported JSON file as a guide, I create the test scripts, test scenarios for error handling and validated JSON response using `ajv` schema assertion. 
+5. Installed Newman and generated the reports on the CLI with one command
+
+```bash
+newman run GetAllProductcategories.postman_collection.json \
+  --reporters cli,json,htmlextra \
+  --reporter-json-export getAllProductcategories-reports/newman-report.json \
+  --reporter-htmlextra-export getAllProductcategories-reports/newman-report.html
+```
+6. The generated reports `newman-report.json` and `newman-report.html` displayed details such as 
+- **Total iterations**
+- **Total Assertions**
+- **Total failed tests**
+- **Total Skipped tests**
+- **Total run duration**
+- **Total data received**
+- **Average/median response time**.
+---
+**N.B: All these and more information about the tests are also printed on the CLI**
+
+
+---
+
+### What I Deliberately left out
+- **Authentication/Authorisation flow**: It is beyond the scope of my assigned tasks
+- **Write-endpoint testing** `(POST, PUT, DELETE on /products)` : not applicable to a GET-only categories endpoint. Out of scope
+
+---
+
+### Proposed Features to be added
+- **CI integration**: run this test suite automatically on every push/PR via GitHub Actions, failing the build on test failures and publishing the HTML and JSON reports as a build artifact.
+- **Response time regression tracking**: Response time is checked against a fixed threshold per run. I would like to track median/average response times across runs to catch performance regressions over time rather than just a single-run snapshot.
