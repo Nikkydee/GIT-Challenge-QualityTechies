@@ -244,10 +244,11 @@ I was assigned the Get-all-Products-categories endpoint `GET /products/categorie
 
 ---
 ### Installation
-1. Clone the repository `git clone https://github.com/QualityTechies/git-challenge-postman.git`. **You should have already been added as a collaborator**
-2. Switch from the main repo to your created repo `git switch -c feature/getAllProductsCategories`
+1. Clone the repository `git clone https://github.com/QualityTechies/git-challenge-postman.git`. 
+- **You should have already been added as a collaborator**
+2. Switch from the main repo to your created repo `git switch -c feature/get-All-Products-Categories`
 3. Download the `DummyJson -QualityTechies.postman_collection.json` to your local storage and import to Postman
-4. On Postman,using the imported JSON file as a guide, I create the test scripts, test scenarios for error handling and validated JSON response using `ajv` schema assertion. 
+4. On Postman,using the imported JSON file as a guide, I created the test scripts(pre-requests and post-requests), test scenarios for error handling and validated JSON response using `ajv` schema assertion. 
 5. Installed Newman and generated the reports on the CLI with one command
 
 ```bash
