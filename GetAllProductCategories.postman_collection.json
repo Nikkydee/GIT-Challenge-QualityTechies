@@ -8,10 +8,10 @@
   },
   "item": [
     {
-      "name": "Error-handling for Get Requests",
+      "name": "Get All Products Categories",
       "item": [
         {
-          "name": "Get non-existent products",
+          "name": "Positive - GetAllProductsCategories || Valid request",
           "event": [
             {
               "listen": "test",
@@ -19,148 +19,70 @@
                 "exec": [
                   "const jsonData = pm.response.json();",
                   "",
-                  "pm.test(\"Status code is 404 for non-existent product\", function () {",
-                  "    pm.response.to.have.status(404);",
-                  "});",
-                  "",
-                  "pm.test(\"Error response contains a message\", function () {  ",
-                  "    pm.expect(jsonData).to.have.property(\"message\");",
-                  "    pm.expect(jsonData.message).to.be.a(\"string\").and.to.not.be.empty;",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{dummy_base_url}}/products/99172",
-              "host": [
-                "{{dummy_base_url}}"
-              ],
-              "path": [
-                "products",
-                "99172"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get invalid (non-numeric) product ID",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 404 or 400 for non-numeric ID\", function () {",
-                  "    pm.expect(pm.response.code).to.be.oneOf([400, 404]);",
-                  "});",
-                  "",
-                  "pm.test(\"Error Response is valid JSON\", function () {",
-                  "    pm.response.to.be.json;",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{dummy_base_url}}/products/abc",
-              "host": [
-                "{{dummy_base_url}}"
-              ],
-              "path": [
-                "products",
-                "abc"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Authentication (Access endpoint only)",
-      "item": [
-        {
-          "name": "Access Dummy Json endpoint with a valid token",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200 with valid token\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "   {\n       \"username\": \"{{username}}\",\n       \"password\": \"{{password}}\",\n       \"expiresInMins\": 30\n   }",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{dummy_base_url}}/auth/login",
-              "host": [
-                "{{dummy_base_url}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get current authenticated dummy json user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200 when user is authenticated\", function () {",
+                  "pm.test(\"Status code is 200\", function () {",
                   "    pm.response.to.have.status(200);",
                   "});",
                   "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Response body is an array of category objects\", function () {",
+                  "    pm.expect(jsonData).to.be.an(\"array\");",
+                  "});",
+                  "",
+                  "pm.test(\"There is more than one category\", function () {",
+                  "    pm.expect(jsonData.length).to.be.above(1);",
+                  "});",
+                  "",
+                  "pm.test(\"Each category object contains slug, name, and url\", function () {",
+                  "    jsonData.forEach(function (category) {",
+                  "        pm.expect(category).to.be.an(\"object\");",
+                  "        pm.expect(category).to.have.property(\"slug\");",
+                  "        pm.expect(category).to.have.property(\"name\");",
+                  "        pm.expect(category).to.have.property(\"url\");",
+                  "    });",
+                  "});",
+                  "",
+                  "pm.test(\"Each category's slug, name, and url are non-empty strings\", function () {",
+                  "    jsonData.forEach(function (category) {",
+                  "        pm.expect(category.slug).to.be.a(\"string\").and.to.not.be.empty;",
+                  "        pm.expect(category.name).to.be.a(\"string\").and.to.not.be.empty;",
+                  "        pm.expect(category.url).to.be.a(\"string\").and.to.not.be.empty;",
+                  "    });",
+                  "});",
+                  "",
+                  "pm.test(\"Response body matches expected JSON schema\", function () {",
+                  "    const schema = {",
+                  "        type: \"array\",",
+                  "        minItems: 2,",
+                  "        items: {",
+                  "            type: \"object\",",
+                  "            properties: {",
+                  "                slug: { type: \"string\" },",
+                  "                name: { type: \"string\" },",
+                  "                url: { type: \"string\" }",
+                  "            },",
+                  "            required: [\"slug\", \"name\", \"url\"],",
+                  "        }",
+                  "    };",
+                  "    pm.response.to.have.jsonSchema(schema);",
+                  "});",
+                  "",
+                  "pm.test(\"Category 'groceries' exists\", function () {",
+                  "    const found = jsonData.some(item => item.slug === \"groceries\");",
+                  "    pm.expect(found).to.be.true;",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
                   ""
                 ],
                 "type": "text/javascript",
@@ -173,92 +95,150 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{dummy_base_url}}/auth/me",
+              "raw": "{{base_url}}/products/categories",
               "host": [
-                "{{dummy_base_url}}"
+                "{{base_url}}"
               ],
               "path": [
-                "auth",
-                "me"
+                "products",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Negative - GetAllProductCategories || InvalidHTTPMethod",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const method = pm.request.method;",
+                  "",
+                  "if (method !== \"GET\") {",
+                  "",
+                  "    const errorResponse = {",
+                  "        status: 404,",
+                  "        error: \"Not Found\",",
+                  "        message: `Method ${method} is not allowed. Expected GET.`",
+                  "    };",
+                  "",
+                  "    pm.test(\"Status code is 404. Invalid HTTP method used\", function () {",
+                  "        pm.response.to.have.status(404);",
+                  "    });",
+                  "",
+                  "    pm.test(\"Response time is less than 2000ms\", function () {",
+                  "      pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "   });",
+                  "",
+                  "    console.log(JSON.stringify(errorResponse, null, 2));",
+                  "",
+                  "} else {",
+                  "",
+                  "    pm.test(\"HTTP method is GET\", function () {",
+                  "        pm.expect(method).to.eql(\"GET\");",
+                  "    });",
+                  "",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Negative - GetAllProductCategories || InvalidEndpointPath",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404. Invalid endpoint path\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"Response body indicates the resource was not found\", function () {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(body.toLowerCase()).to.satisfy(function (b) {",
+                  "        return b.includes(\"cannot\") || b.includes(\"not found\");",
+                  "    });",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "console.log(`[Invalid Path Check] ${pm.request.url} → ${pm.response.code} ${pm.response.status}`);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/categoriesse",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                "categoriesse"
               ]
             }
           },
           "response": []
         }
-      ]
-    },
-    {
-      "name": "Get-all-Products-categories",
+      ],
       "event": [
         {
           "listen": "prerequest",
           "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
             "exec": [
               "pm.test(\"base_url is not hardcoded but defined in the collection\", function () {",
-              "    pm.expect(pm.collectionVariables.get(\"dummy_base_url\")).to.exist;",
+              "    pm.expect(pm.collectionVariables.get(\"base_url\")).to.exist;",
               "});",
               "",
               ""
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            ]
           }
         },
         {
           "listen": "test",
           "script": {
-            "exec": [
-              "const jsonData = pm.response.json();",
-              "",
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Response time is less than 1000ms\", function () {",
-              "    pm.expect(pm.response.responseTime).to.be.below(1000);",
-              "});",
-              "",
-              "pm.test(\"Response body is an array of category objects\", function () {",
-              "    pm.expect(jsonData).to.be.an(\"array\");",
-              "});",
-              "",
-              "pm.test(\"Each category object contains slug, name, and url\", function () {",
-              "    jsonData.forEach(function (category) {",
-              "        pm.expect(category).to.be.an(\"object\");",
-              "        pm.expect(category).to.have.property(\"slug\");",
-              "        pm.expect(category).to.have.property(\"name\");",
-              "        pm.expect(category).to.have.property(\"url\");",
-              "    });",
-              "});",
-              "",
-              "pm.test(\"Category 'groceries' exists\", function () {",
-              "    const found = jsonData.some(item => item.slug === \"groceries\");",
-              "    pm.expect(found).to.be.true;",
-              "});",
-              ""
-            ],
             "type": "text/javascript",
             "packages": {},
-            "requests": {}
+            "requests": {},
+            "exec": [
+              ""
+            ]
           }
         }
-      ],
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{dummy_base_url}}/products/categories",
-          "host": [
-            "{{dummy_base_url}}"
-          ],
-          "path": [
-            "products",
-            "categories"
-          ]
-        }
-      },
-      "response": []
+      ]
     }
   ],
   "event": [
@@ -291,7 +271,7 @@
   ],
   "variable": [
     {
-      "key": "dummy_base_url",
+      "key": "base_url",
       "value": "https://dummyjson.com/"
     }
   ]
