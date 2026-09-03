@@ -7,11 +7,11 @@
     },
     "item": [
       {
-        "id": "d3cc28e2-9206-4825-a69b-6936392cca2b",
+        "id": "1fd60d67-37a1-415f-b677-5ea5e969b209",
         "name": "Get All Products Categories",
         "item": [
           {
-            "id": "ec973e76-40d7-47d5-a0b3-66639125cf3e",
+            "id": "2b0d6582-af44-4f76-93b2-0e485802eed0",
             "name": "Positive - GetAllProductsCategories || Valid request",
             "request": {
               "url": {
@@ -32,7 +32,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "7bdba717-9833-4855-9202-7f8363c8c444",
+                  "id": "5aa816b9-9d5c-41fd-bf1d-8810f9b1a4e0",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -40,10 +40,6 @@
                     "",
                     "pm.test(\"Status code is 200\", function () {",
                     "    pm.response.to.have.status(200);",
-                    "});",
-                    "",
-                    "pm.test(\"Response time is less than 2000ms\", function () {",
-                    "    pm.expect(pm.response.responseTime).to.be.below(2000);",
                     "});",
                     "",
                     "pm.test(\"Response body is an array of category objects\", function () {",
@@ -93,25 +89,25 @@
                     "    pm.expect(found).to.be.true;",
                     "});"
                   ],
-                  "_lastExecutionId": "a9c02c1f-7f5f-4066-a5ab-c9ed2804f33b"
+                  "_lastExecutionId": "52649a31-4ccb-4cce-b3ee-1f46ab38cab3"
                 }
               },
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "fa57f570-f746-4b79-a13e-5c9dbb3041ec",
+                  "id": "2c9a0296-0b2a-45a1-954b-67083000cd19",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
                     ""
                   ],
-                  "_lastExecutionId": "9e8d1078-9ae4-4522-ac33-9c99934fa4a4"
+                  "_lastExecutionId": "9218d1a0-6563-495d-a9ce-d3772f268cf8"
                 }
               }
             ]
           },
           {
-            "id": "0369bee7-499f-4234-bf75-ff4f9053b9b4",
+            "id": "96df36d0-bb54-45ee-ae2d-755e109e6b7c",
             "name": "Negative - GetAllProductCategories || InvalidHTTPMethod",
             "request": {
               "url": {
@@ -132,7 +128,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "ce7b22a3-abaf-4a0f-8a7c-a08526c807fa",
+                  "id": "da758c4a-aca3-4181-8503-2df5c72ed0e5",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -150,10 +146,6 @@
                     "        pm.response.to.have.status(404);",
                     "    });",
                     "",
-                    "    pm.test(\"Response time is less than 2000ms\", function () {",
-                    "      pm.expect(pm.response.responseTime).to.be.below(2000);",
-                    "   });",
-                    "",
                     "    console.log(JSON.stringify(errorResponse, null, 2));",
                     "",
                     "} else {",
@@ -164,13 +156,13 @@
                     "",
                     "}"
                   ],
-                  "_lastExecutionId": "2f099b60-1c48-4a87-9736-2c0502bd0bf0"
+                  "_lastExecutionId": "d3768744-8af9-4f00-948d-ff29cbc4d48c"
                 }
               }
             ]
           },
           {
-            "id": "f589acff-2f40-41bd-b597-8abc39c4238e",
+            "id": "1f331f45-ca34-4724-8651-9cc6ac6cb94f",
             "name": "Negative - GetAllProductCategories || InvalidEndpointPath",
             "request": {
               "url": {
@@ -191,7 +183,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "b2321862-27e1-4c6f-aa25-b525dd0bdb65",
+                  "id": "a6a2b599-be29-4052-997d-ddfc06e955ec",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -206,13 +198,9 @@
                     "    });",
                     "});",
                     "",
-                    "pm.test(\"Response time is less than 2000ms\", function () {",
-                    "    pm.expect(pm.response.responseTime).to.be.below(2000);",
-                    "});",
-                    "",
                     "console.log(`[Invalid Path Check] ${pm.request.url} → ${pm.response.code} ${pm.response.status}`);"
                   ],
-                  "_lastExecutionId": "a61f7d71-a40f-4056-b834-4d37be2e37cd"
+                  "_lastExecutionId": "ca0d2dd3-19b8-4220-af26-a8937b165381"
                 }
               }
             ]
@@ -222,7 +210,7 @@
           {
             "listen": "prerequest",
             "script": {
-              "id": "257cae76-083a-48fa-92e6-7f22f1122111",
+              "id": "e78460af-c294-406e-ae5f-b0361617055c",
               "type": "text/javascript",
               "packages": {},
               "exec": [
@@ -232,19 +220,19 @@
                 "",
                 ""
               ],
-              "_lastExecutionId": "b1a78a0f-0ad7-4801-a3de-a808ebdf3240"
+              "_lastExecutionId": "4a7f7a55-42f1-4f3f-9490-08081ef24ba1"
             }
           },
           {
             "listen": "test",
             "script": {
-              "id": "c57a2f54-383e-4067-a272-5164ae111a91",
+              "id": "60414503-25dd-4d50-8821-71ec64ed2125",
               "type": "text/javascript",
               "packages": {},
               "exec": [
                 ""
               ],
-              "_lastExecutionId": "221d0e46-30ab-491d-82b8-c79316484600"
+              "_lastExecutionId": "c9e1093b-fd98-4871-ae2d-6a6c3f36f4a5"
             }
           }
         ]
@@ -254,36 +242,40 @@
       {
         "listen": "prerequest",
         "script": {
-          "id": "ce2dcbdd-1687-4b6f-83a3-ab218279cfef",
+          "id": "deeb5640-24ce-4aab-ba55-800f0025e408",
           "type": "text/javascript",
           "packages": {},
           "exec": [
             ""
           ],
-          "_lastExecutionId": "6e5655ed-85d9-4ac6-a2c2-73de6298053a"
+          "_lastExecutionId": "266fc79e-6ff5-450d-bb11-a1be5866107a"
         }
       },
       {
         "listen": "test",
         "script": {
-          "id": "62f9cb39-178d-4095-a4b7-0ed0225458b0",
+          "id": "141c7c77-ab9d-4bce-a860-a11f1cf55454",
           "type": "text/javascript",
           "packages": {},
           "exec": [
             "console.log(`[Response Time] ${pm.info.requestName}: ${pm.response.responseTime}ms`);",
             "",
+            "pm.test(\"Response time is less than 2000ms\", function () {",
+            "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+            "});",
+            "",
             "pm.test(`Response time logged (${pm.response.responseTime}ms)`, function () {",
             "    pm.expect(pm.response.responseTime).to.be.a(\"number\");",
             "});"
           ],
-          "_lastExecutionId": "79b6f2ff-2cb2-49ec-87f4-5cefbe7bc42e"
+          "_lastExecutionId": "40d5c1d0-998e-4569-a1c2-7882840d4914"
         }
       }
     ],
     "variable": [
       {
         "type": "any",
-        "value": "https://dummyjson.com/",
+        "value": "https://dummyjson.com",
         "key": "base_url"
       }
     ],
@@ -294,11 +286,11 @@
     }
   },
   "environment": {
-    "id": "34ce67b8-038d-492e-b843-8d6c0ca9a7c6",
+    "id": "302a0028-08c1-4ec1-b244-77f31f34c5f0",
     "values": []
   },
   "globals": {
-    "id": "0fc3ec3e-10ae-4064-870c-946c56ae2f38",
+    "id": "9cabb552-027c-47ae-a61a-008ac3474c91",
     "values": []
   },
   "run": {
@@ -350,20 +342,20 @@
       }
     },
     "timings": {
-      "responseAverage": 479,
-      "responseMin": 241,
-      "responseMax": 934,
-      "responseSd": 321.84779011203415,
-      "dnsAverage": 199.18270900000005,
-      "dnsMin": 199.18270900000005,
-      "dnsMax": 199.18270900000005,
+      "responseAverage": 335.6666666666667,
+      "responseMin": 151,
+      "responseMax": 691,
+      "responseSd": 251.32360723886558,
+      "dnsAverage": 43.42562499999997,
+      "dnsMin": 43.42562499999997,
+      "dnsMax": 43.42562499999997,
       "dnsSd": 0,
-      "firstByteAverage": 257.37145833333335,
-      "firstByteMin": 235.83062500000005,
-      "firstByteMax": 277.327667,
-      "firstByteSd": 16.97811140239292,
-      "started": 1788364900053,
-      "completed": 1788364901635
+      "firstByteAverage": 283.9719026666667,
+      "firstByteMin": 148.69237499999986,
+      "firstByteMax": 543.0008750000001,
+      "firstByteSd": 183.22161823784845,
+      "started": 1788395343271,
+      "completed": 1788395344435
     },
     "executions": [
       {
@@ -376,11 +368,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "f4bade15-1e0c-4ca9-a2cf-66af53882d5c",
-          "httpRequestId": "cf71696e-900d-4608-83bc-2fc36f0bd964"
+          "ref": "b8330344-e5e8-4a87-a45b-1be4ce045641",
+          "httpRequestId": "720174c0-4e5c-4071-9793-db150c4e8bb4"
         },
         "item": {
-          "id": "ec973e76-40d7-47d5-a0b3-66639125cf3e",
+          "id": "2b0d6582-af44-4f76-93b2-0e485802eed0",
           "name": "Positive - GetAllProductsCategories || Valid request",
           "request": {
             "url": {
@@ -401,7 +393,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7bdba717-9833-4855-9202-7f8363c8c444",
+                "id": "5aa816b9-9d5c-41fd-bf1d-8810f9b1a4e0",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -409,10 +401,6 @@
                   "",
                   "pm.test(\"Status code is 200\", function () {",
                   "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"Response time is less than 2000ms\", function () {",
-                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
                   "});",
                   "",
                   "pm.test(\"Response body is an array of category objects\", function () {",
@@ -462,19 +450,19 @@
                   "    pm.expect(found).to.be.true;",
                   "});"
                 ],
-                "_lastExecutionId": "a9c02c1f-7f5f-4066-a5ab-c9ed2804f33b"
+                "_lastExecutionId": "52649a31-4ccb-4cce-b3ee-1f46ab38cab3"
               }
             },
             {
               "listen": "prerequest",
               "script": {
-                "id": "fa57f570-f746-4b79-a13e-5c9dbb3041ec",
+                "id": "2c9a0296-0b2a-45a1-954b-67083000cd19",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
                   ""
                 ],
-                "_lastExecutionId": "9e8d1078-9ae4-4522-ac33-9c99934fa4a4"
+                "_lastExecutionId": "9218d1a0-6563-495d-a9ce-d3772f268cf8"
               }
             }
           ]
@@ -485,15 +473,15 @@
             "skipped": false
           },
           {
-            "assertion": "Response time logged (934ms)",
+            "assertion": "Response time is less than 2000ms",
+            "skipped": false
+          },
+          {
+            "assertion": "Response time logged (691ms)",
             "skipped": false
           },
           {
             "assertion": "Status code is 200",
-            "skipped": false
-          },
-          {
-            "assertion": "Response time is less than 2000ms",
             "skipped": false
           },
           {
@@ -525,7 +513,6 @@
           "url": {
             "protocol": "https",
             "path": [
-              "",
               "products",
               "categories"
             ],
@@ -554,7 +541,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "260ba095-4387-4c1b-b434-95348d321fb9",
+              "value": "41cbb595-d1b3-43f4-ac01-53622877add1",
               "system": true
             },
             {
@@ -576,13 +563,13 @@
           "method": "GET"
         },
         "response": {
-          "id": "9759845f-73b3-4eb2-9b34-c974aba0c8b3",
+          "id": "91fae414-6800-4712-9e29-05582e291fbe",
           "status": "OK",
           "code": 200,
           "header": [
             {
               "key": "Date",
-              "value": "Wed, 02 Sep 2026 16:01:41 GMT"
+              "value": "Thu, 03 Sep 2026 00:29:04 GMT"
             },
             {
               "key": "Content-Type",
@@ -642,7 +629,7 @@
             },
             {
               "key": "x-ratelimit-reset",
-              "value": "1788364906"
+              "value": "1788395347"
             },
             {
               "key": "x-xss-protection",
@@ -654,7 +641,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ROymQiYRYZE8IdSdULpS0bRgAuCQRvOSC2XO9kFMvGecymVxRPQ5GTAp7z22V1UWSwty5Kucax%2B1SmtxJY3YzqOWpAmhHAD2o6%2F1QlJ1ityU9LvrXaOnr2NV0OLnkDMxQeUIt2vxW7n7DXHo\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=iX6ayIGATIsyohaPsfENa9UFIBrnTmPjwb5aWL98LCO%2Bd8JQnq6z2Bf2Q4VK6MAlIw7VWiYPDnUwM08YyUuaN3y0Rb6%2FXRYS5OZCPb2Qb0DaKbDq0k%2FX2opVZb0SXF7hB7S6%2FvkazPMFRAwc\"}]}"
             },
             {
               "key": "Nel",
@@ -666,7 +653,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a34dbc171cf5e3bd-LIS"
+              "value": "a350a3521a09b14b-LOS"
             }
           ],
           "stream": {
@@ -3187,22 +3174,22 @@
             ]
           },
           "cookie": [],
-          "responseTime": 934,
+          "responseTime": 691,
           "responseSize": 2512
         },
-        "id": "ec973e76-40d7-47d5-a0b3-66639125cf3e"
+        "id": "2b0d6582-af44-4f76-93b2-0e485802eed0"
       },
       {
         "cursor": {
-          "ref": "f2671853-752d-4fdc-a981-5674dfafe0ac",
+          "ref": "358a5b88-a2f0-4dee-beef-f71a249a72b4",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "bb5fa6a0-bf8f-4554-88d3-09d4a3263990"
+          "httpRequestId": "cd4a0fc7-9272-41d7-b6d2-60926864ef97"
         },
         "item": {
-          "id": "0369bee7-499f-4234-bf75-ff4f9053b9b4",
+          "id": "96df36d0-bb54-45ee-ae2d-755e109e6b7c",
           "name": "Negative - GetAllProductCategories || InvalidHTTPMethod",
           "request": {
             "url": {
@@ -3223,7 +3210,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ce7b22a3-abaf-4a0f-8a7c-a08526c807fa",
+                "id": "da758c4a-aca3-4181-8503-2df5c72ed0e5",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -3241,10 +3228,6 @@
                   "        pm.response.to.have.status(404);",
                   "    });",
                   "",
-                  "    pm.test(\"Response time is less than 2000ms\", function () {",
-                  "      pm.expect(pm.response.responseTime).to.be.below(2000);",
-                  "   });",
-                  "",
                   "    console.log(JSON.stringify(errorResponse, null, 2));",
                   "",
                   "} else {",
@@ -3255,7 +3238,7 @@
                   "",
                   "}"
                 ],
-                "_lastExecutionId": "2f099b60-1c48-4a87-9736-2c0502bd0bf0"
+                "_lastExecutionId": "d3768744-8af9-4f00-948d-ff29cbc4d48c"
               }
             }
           ]
@@ -3266,15 +3249,15 @@
             "skipped": false
           },
           {
-            "assertion": "Response time logged (241ms)",
+            "assertion": "Response time is less than 2000ms",
+            "skipped": false
+          },
+          {
+            "assertion": "Response time logged (151ms)",
             "skipped": false
           },
           {
             "assertion": "Status code is 404. Invalid HTTP method used",
-            "skipped": false
-          },
-          {
-            "assertion": "Response time is less than 2000ms",
             "skipped": false
           }
         ],
@@ -3282,7 +3265,6 @@
           "url": {
             "protocol": "https",
             "path": [
-              "",
               "products",
               "categories"
             ],
@@ -3311,7 +3293,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "e85057a0-dd64-42c0-89a2-1650117461b4",
+              "value": "265ffc75-489d-4297-b385-c12e9f2d61d5",
               "system": true
             },
             {
@@ -3338,13 +3320,13 @@
           "method": "POST"
         },
         "response": {
-          "id": "c4dc7b98-7724-4ad2-a29e-1d2af14cd94e",
+          "id": "d76e1b6a-7d3b-4211-913c-6a4ae1b4a80c",
           "status": "Not Found",
           "code": 404,
           "header": [
             {
               "key": "Date",
-              "value": "Wed, 02 Sep 2026 16:01:41 GMT"
+              "value": "Thu, 03 Sep 2026 00:29:04 GMT"
             },
             {
               "key": "Content-Type",
@@ -3396,11 +3378,11 @@
             },
             {
               "key": "x-ratelimit-remaining",
-              "value": "99"
+              "value": "98"
             },
             {
               "key": "x-ratelimit-reset",
-              "value": "1788364906"
+              "value": "1788395347"
             },
             {
               "key": "x-xss-protection",
@@ -3412,7 +3394,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Aky7ycVhzCa8pwo%2FazlFtdIK2bSOXVWty3BDatWbEAaSCqreCVgGB2hol8%2BZr%2BpgKipg1ywSrARP8cO73OoN8fQm2Okt3i6OM5VKuwChqikzxorR3NmmRZNRFL37%2Bbs7lmOkT6I9f7fgJvfv\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=y%2Bu0FxhQVcbVRfw4VBtop5N75lk90PnaeXqq1n6PucJ12uN427Yq3nKIJVsrWKEIDtogeekzecRCkisdRsTMYZhY7%2F48Stfo2a1j1DYlr8hGPw4ZhNG266HolWyAsFZAVLqSwThk%2Fr%2F6Ctd2\"}]}"
             },
             {
               "key": "Nel",
@@ -3428,7 +3410,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a34dbc193dc1e3bd-LIS"
+              "value": "a350a3561ae2b14b-LOS"
             }
           ],
           "stream": {
@@ -3596,22 +3578,22 @@
             ]
           },
           "cookie": [],
-          "responseTime": 241,
+          "responseTime": 151,
           "responseSize": 159
         },
-        "id": "0369bee7-499f-4234-bf75-ff4f9053b9b4"
+        "id": "96df36d0-bb54-45ee-ae2d-755e109e6b7c"
       },
       {
         "cursor": {
-          "ref": "ebfeeb6f-aa33-4058-852f-6dd5a7c101f1",
+          "ref": "1048a902-b6c5-46ba-bec5-b32dbaff8bfa",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "7ee35a9f-9d05-4866-93c3-89b575817824"
+          "httpRequestId": "db23bb02-ef5d-4c98-a2a4-ed79aaa93b3f"
         },
         "item": {
-          "id": "f589acff-2f40-41bd-b597-8abc39c4238e",
+          "id": "1f331f45-ca34-4724-8651-9cc6ac6cb94f",
           "name": "Negative - GetAllProductCategories || InvalidEndpointPath",
           "request": {
             "url": {
@@ -3632,7 +3614,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "b2321862-27e1-4c6f-aa25-b525dd0bdb65",
+                "id": "a6a2b599-be29-4052-997d-ddfc06e955ec",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -3647,13 +3629,9 @@
                   "    });",
                   "});",
                   "",
-                  "pm.test(\"Response time is less than 2000ms\", function () {",
-                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
-                  "});",
-                  "",
                   "console.log(`[Invalid Path Check] ${pm.request.url} → ${pm.response.code} ${pm.response.status}`);"
                 ],
-                "_lastExecutionId": "a61f7d71-a40f-4056-b834-4d37be2e37cd"
+                "_lastExecutionId": "ca0d2dd3-19b8-4220-af26-a8937b165381"
               }
             }
           ]
@@ -3664,7 +3642,11 @@
             "skipped": false
           },
           {
-            "assertion": "Response time logged (262ms)",
+            "assertion": "Response time is less than 2000ms",
+            "skipped": false
+          },
+          {
+            "assertion": "Response time logged (165ms)",
             "skipped": false
           },
           {
@@ -3674,17 +3656,12 @@
           {
             "assertion": "Response body indicates the resource was not found",
             "skipped": false
-          },
-          {
-            "assertion": "Response time is less than 2000ms",
-            "skipped": false
           }
         ],
         "request": {
           "url": {
             "protocol": "https",
             "path": [
-              "",
               "products",
               "categoriesse"
             ],
@@ -3713,7 +3690,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "28bc4ec4-ed84-45d0-9d3b-932b60e423ad",
+              "value": "667d9a56-36e8-4b3f-999f-1aa1c2b6e455",
               "system": true
             },
             {
@@ -3735,13 +3712,13 @@
           "method": "GET"
         },
         "response": {
-          "id": "fdc45694-0088-4af0-90fb-88445081906a",
+          "id": "23184cfe-8643-4acf-867b-802922804db9",
           "status": "Not Found",
           "code": 404,
           "header": [
             {
               "key": "Date",
-              "value": "Wed, 02 Sep 2026 16:01:41 GMT"
+              "value": "Thu, 03 Sep 2026 00:29:04 GMT"
             },
             {
               "key": "Content-Type",
@@ -3793,11 +3770,11 @@
             },
             {
               "key": "x-ratelimit-remaining",
-              "value": "98"
+              "value": "97"
             },
             {
               "key": "x-ratelimit-reset",
-              "value": "1788364906"
+              "value": "1788395347"
             },
             {
               "key": "x-xss-protection",
@@ -3809,7 +3786,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=C9VCKP1FYxffpWuV0X33oIbSCdtRNiCUnj7YHj5SqM9njYsbf6%2FRAqm95PaCVHXjL%2FhQ3k1Q%2FftnYwnSGLd%2BytdKdDtaYfFOp0o3crJ6J20%2FlcKJKi887xbygnma9Gs9FQs9ZWZLfcY5UGdO\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=i8x5Q5W4eM8jAhnXaDzfo%2Fh4Z29QY2TsIoMu4XVUgOvVwWGJ4sdqqy9vlB9W3R14qV8Q8s83UwAenNqbDzT7DAavAfCSNLpImR0BgOunsq2JWDurmeukQCrPp0y60PJZSoOlEyrKRFQ7ytqi\"}]}"
             },
             {
               "key": "Nel",
@@ -3825,7 +3802,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a34dbc1afd1ae3bd-LIS"
+              "value": "a350a3574b07b14b-LOS"
             }
           ],
           "stream": {
@@ -3888,10 +3865,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 262,
+          "responseTime": 165,
           "responseSize": 54
         },
-        "id": "f589acff-2f40-41bd-b597-8abc39c4238e"
+        "id": "1f331f45-ca34-4724-8651-9cc6ac6cb94f"
       }
     ],
     "transfers": {
