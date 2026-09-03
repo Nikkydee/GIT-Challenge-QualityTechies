@@ -23,10 +23,6 @@
                   "    pm.response.to.have.status(200);",
                   "});",
                   "",
-                  "pm.test(\"Response time is less than 2000ms\", function () {",
-                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
-                  "});",
-                  "",
                   "pm.test(\"Response body is an array of category objects\", function () {",
                   "    pm.expect(jsonData).to.be.an(\"array\");",
                   "});",
@@ -128,10 +124,6 @@
                   "        pm.response.to.have.status(404);",
                   "    });",
                   "",
-                  "    pm.test(\"Response time is less than 2000ms\", function () {",
-                  "      pm.expect(pm.response.responseTime).to.be.below(2000);",
-                  "   });",
-                  "",
                   "    console.log(JSON.stringify(errorResponse, null, 2));",
                   "",
                   "} else {",
@@ -180,10 +172,6 @@
                   "    pm.expect(body.toLowerCase()).to.satisfy(function (b) {",
                   "        return b.includes(\"cannot\") || b.includes(\"not found\");",
                   "    });",
-                  "});",
-                  "",
-                  "pm.test(\"Response time is less than 2000ms\", function () {",
-                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
                   "});",
                   "",
                   "console.log(`[Invalid Path Check] ${pm.request.url} → ${pm.response.code} ${pm.response.status}`);"
@@ -262,6 +250,10 @@
         "exec": [
           "console.log(`[Response Time] ${pm.info.requestName}: ${pm.response.responseTime}ms`);",
           "",
+          "pm.test(\"Response time is less than 2000ms\", function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+          "});",
+          "",
           "pm.test(`Response time logged (${pm.response.responseTime}ms)`, function () {",
           "    pm.expect(pm.response.responseTime).to.be.a(\"number\");",
           "});"
@@ -272,7 +264,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "https://dummyjson.com/"
+      "value": ""
     }
   ]
 }

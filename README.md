@@ -273,7 +273,10 @@ newman run GetAllProductcategories.postman_collection.json \
 
 ### What I Deliberately left out
 - **Authentication/Authorisation flow**: It is beyond the scope of my assigned tasks
-- **Write-endpoint testing** `(POST, PUT, DELETE on /products)` : not applicable to a GET-only categories endpoint. Out of scope
+- **Malformed JSON body validation, missing required fields, and invalid data types**: `(Get-all-Products-categories)` is a `GET` request and does not send a JSON request body / payload. These validations are only applicable to HTTP requests that use a JSON payload like `(POST, PUT, PATCH)` so they were intentionally left out by me
+- **Invalid query parameter validation**: This endpoint does not accept any query parameters, so there was no applicable query-parameter input to validate.
+
+- **Other non-JSON sending payload methods**: `DELETE` method does not send JSON payload / body but was intentionally excluded by me. 
 
 ---
 
