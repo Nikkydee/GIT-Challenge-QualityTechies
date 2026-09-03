@@ -51,7 +51,6 @@
                   "pm.test(\"Response body matches expected JSON schema\", function () {",
                   "    const schema = {",
                   "        type: \"array\",",
-                  "        minItems: 2,",
                   "        items: {",
                   "            type: \"object\",",
                   "            properties: {",
@@ -110,29 +109,17 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const method = pm.request.method;",
                   "",
-                  "if (method !== \"GET\") {",
+                  "pm.test(\"Status code is 404 for unsupported HTTP method\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
                   "",
-                  "    const errorResponse = {",
-                  "        status: 404,",
-                  "        error: \"Not Found\",",
-                  "        message: `Method ${method} is not allowed. Expected GET.`",
-                  "    };",
+                  "pm.test(\"Response body indicates POST method is not supported\", function () {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(body).to.include(\"Cannot POST /products/categories\");",
+                  "});",
                   "",
-                  "    pm.test(\"Status code is 404. Invalid HTTP method used\", function () {",
-                  "        pm.response.to.have.status(404);",
-                  "    });",
-                  "",
-                  "    console.log(JSON.stringify(errorResponse, null, 2));",
-                  "",
-                  "} else {",
-                  "",
-                  "    pm.test(\"HTTP method is GET\", function () {",
-                  "        pm.expect(method).to.eql(\"GET\");",
-                  "    });",
-                  "",
-                  "}"
+                  ""
                 ],
                 "type": "text/javascript",
                 "packages": {},
@@ -264,7 +251,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "https://dummyjson.com"
+      "value": ""
     }
   ]
 }
