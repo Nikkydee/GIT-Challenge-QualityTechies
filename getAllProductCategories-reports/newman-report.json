@@ -7,11 +7,11 @@
     },
     "item": [
       {
-        "id": "1fd60d67-37a1-415f-b677-5ea5e969b209",
+        "id": "2f1b570c-5e0a-449f-8c51-664f26631cbe",
         "name": "Get All Products Categories",
         "item": [
           {
-            "id": "2b0d6582-af44-4f76-93b2-0e485802eed0",
+            "id": "e602437f-3440-4a7e-b49e-bf75276dddac",
             "name": "Positive - GetAllProductsCategories || Valid request",
             "request": {
               "url": {
@@ -32,7 +32,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "5aa816b9-9d5c-41fd-bf1d-8810f9b1a4e0",
+                  "id": "c67dd5ed-e3f9-45b4-ae41-02976bc922ba",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -70,7 +70,6 @@
                     "pm.test(\"Response body matches expected JSON schema\", function () {",
                     "    const schema = {",
                     "        type: \"array\",",
-                    "        minItems: 2,",
                     "        items: {",
                     "            type: \"object\",",
                     "            properties: {",
@@ -89,25 +88,25 @@
                     "    pm.expect(found).to.be.true;",
                     "});"
                   ],
-                  "_lastExecutionId": "52649a31-4ccb-4cce-b3ee-1f46ab38cab3"
+                  "_lastExecutionId": "0c85e86c-c4bf-458a-82b0-5648d5e4cdc9"
                 }
               },
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "2c9a0296-0b2a-45a1-954b-67083000cd19",
+                  "id": "bbde6818-7800-45f1-a53d-f81a009b0097",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
                     ""
                   ],
-                  "_lastExecutionId": "9218d1a0-6563-495d-a9ce-d3772f268cf8"
+                  "_lastExecutionId": "0eee9d26-ce03-4b95-aec3-5a9630016f7c"
                 }
               }
             ]
           },
           {
-            "id": "96df36d0-bb54-45ee-ae2d-755e109e6b7c",
+            "id": "ce52d0ff-669c-481a-975f-6e44f394e0d4",
             "name": "Negative - GetAllProductCategories || InvalidHTTPMethod",
             "request": {
               "url": {
@@ -128,41 +127,29 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "da758c4a-aca3-4181-8503-2df5c72ed0e5",
+                  "id": "bc25af11-d8c1-4e43-93e4-8833929dc9c2",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
-                    "const method = pm.request.method;",
                     "",
-                    "if (method !== \"GET\") {",
+                    "pm.test(\"Status code is 404 for unsupported HTTP method\", function () {",
+                    "    pm.response.to.have.status(404);",
+                    "});",
                     "",
-                    "    const errorResponse = {",
-                    "        status: 404,",
-                    "        error: \"Not Found\",",
-                    "        message: `Method ${method} is not allowed. Expected GET.`",
-                    "    };",
+                    "pm.test(\"Response body indicates POST method is not supported\", function () {",
+                    "    const body = pm.response.text();",
+                    "    pm.expect(body).to.include(\"Cannot POST /products/categories\");",
+                    "});",
                     "",
-                    "    pm.test(\"Status code is 404. Invalid HTTP method used\", function () {",
-                    "        pm.response.to.have.status(404);",
-                    "    });",
-                    "",
-                    "    console.log(JSON.stringify(errorResponse, null, 2));",
-                    "",
-                    "} else {",
-                    "",
-                    "    pm.test(\"HTTP method is GET\", function () {",
-                    "        pm.expect(method).to.eql(\"GET\");",
-                    "    });",
-                    "",
-                    "}"
+                    ""
                   ],
-                  "_lastExecutionId": "d3768744-8af9-4f00-948d-ff29cbc4d48c"
+                  "_lastExecutionId": "d2557ff7-5e27-46a4-9613-cbd1887d5e2f"
                 }
               }
             ]
           },
           {
-            "id": "1f331f45-ca34-4724-8651-9cc6ac6cb94f",
+            "id": "b648ce73-d44c-407f-b44b-c439c5828495",
             "name": "Negative - GetAllProductCategories || InvalidEndpointPath",
             "request": {
               "url": {
@@ -183,7 +170,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "a6a2b599-be29-4052-997d-ddfc06e955ec",
+                  "id": "fb0a9932-ddc8-42fd-9b63-ce4f248ac99d",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -200,7 +187,7 @@
                     "",
                     "console.log(`[Invalid Path Check] ${pm.request.url} → ${pm.response.code} ${pm.response.status}`);"
                   ],
-                  "_lastExecutionId": "ca0d2dd3-19b8-4220-af26-a8937b165381"
+                  "_lastExecutionId": "a742b77e-799c-4a1f-ae51-c1d0f79daccc"
                 }
               }
             ]
@@ -210,7 +197,7 @@
           {
             "listen": "prerequest",
             "script": {
-              "id": "e78460af-c294-406e-ae5f-b0361617055c",
+              "id": "56ae1274-8129-423f-a73a-0b1ba36f7748",
               "type": "text/javascript",
               "packages": {},
               "exec": [
@@ -220,19 +207,19 @@
                 "",
                 ""
               ],
-              "_lastExecutionId": "4a7f7a55-42f1-4f3f-9490-08081ef24ba1"
+              "_lastExecutionId": "6166eaef-8d71-4d06-8a0c-6d9ce42ed589"
             }
           },
           {
             "listen": "test",
             "script": {
-              "id": "60414503-25dd-4d50-8821-71ec64ed2125",
+              "id": "79bf5fa4-d1a3-45f1-b8a1-8183256d53d9",
               "type": "text/javascript",
               "packages": {},
               "exec": [
                 ""
               ],
-              "_lastExecutionId": "c9e1093b-fd98-4871-ae2d-6a6c3f36f4a5"
+              "_lastExecutionId": "96234494-ecd0-46da-864e-e54eae4e1542"
             }
           }
         ]
@@ -242,19 +229,19 @@
       {
         "listen": "prerequest",
         "script": {
-          "id": "deeb5640-24ce-4aab-ba55-800f0025e408",
+          "id": "42f6897f-9095-49f6-80e5-4697b07f636d",
           "type": "text/javascript",
           "packages": {},
           "exec": [
             ""
           ],
-          "_lastExecutionId": "266fc79e-6ff5-450d-bb11-a1be5866107a"
+          "_lastExecutionId": "a195bc31-9900-4444-a644-aac9236ea55d"
         }
       },
       {
         "listen": "test",
         "script": {
-          "id": "141c7c77-ab9d-4bce-a860-a11f1cf55454",
+          "id": "0130b7c1-260b-4f1b-8804-568958cf94f0",
           "type": "text/javascript",
           "packages": {},
           "exec": [
@@ -268,7 +255,7 @@
             "    pm.expect(pm.response.responseTime).to.be.a(\"number\");",
             "});"
           ],
-          "_lastExecutionId": "40d5c1d0-998e-4569-a1c2-7882840d4914"
+          "_lastExecutionId": "35576c72-385e-4f53-8149-5aff62a7ac53"
         }
       }
     ],
@@ -286,11 +273,11 @@
     }
   },
   "environment": {
-    "id": "302a0028-08c1-4ec1-b244-77f31f34c5f0",
+    "id": "24b8ce31-2243-45da-9a74-d1db329134e8",
     "values": []
   },
   "globals": {
-    "id": "9cabb552-027c-47ae-a61a-008ac3474c91",
+    "id": "2f253e59-277e-45d5-bb20-a65168cd56e3",
     "values": []
   },
   "run": {
@@ -326,7 +313,7 @@
         "failed": 0
       },
       "assertions": {
-        "total": 19,
+        "total": 20,
         "pending": 0,
         "failed": 0
       },
@@ -342,20 +329,20 @@
       }
     },
     "timings": {
-      "responseAverage": 335.6666666666667,
-      "responseMin": 151,
-      "responseMax": 691,
-      "responseSd": 251.32360723886558,
-      "dnsAverage": 43.42562499999997,
-      "dnsMin": 43.42562499999997,
-      "dnsMax": 43.42562499999997,
+      "responseAverage": 455.3333333333333,
+      "responseMin": 230,
+      "responseMax": 897,
+      "responseSd": 312.3271077287756,
+      "dnsAverage": 42.13733300000001,
+      "dnsMin": 42.13733300000001,
+      "dnsMax": 42.13733300000001,
       "dnsSd": 0,
-      "firstByteAverage": 283.9719026666667,
-      "firstByteMin": 148.69237499999986,
-      "firstByteMax": 543.0008750000001,
-      "firstByteSd": 183.22161823784845,
-      "started": 1788395343271,
-      "completed": 1788395344435
+      "firstByteAverage": 350.1939723333333,
+      "firstByteMin": 225.32420899999988,
+      "firstByteMax": 588.9777079999999,
+      "firstByteSd": 168.90482853430663,
+      "started": 1788465348159,
+      "completed": 1788465349686
     },
     "executions": [
       {
@@ -368,11 +355,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "b8330344-e5e8-4a87-a45b-1be4ce045641",
-          "httpRequestId": "720174c0-4e5c-4071-9793-db150c4e8bb4"
+          "ref": "4db793c8-2aaf-4d92-82fe-5680ceecfe33",
+          "httpRequestId": "087c1f8e-7d0a-4b52-968b-ac74da73fe01"
         },
         "item": {
-          "id": "2b0d6582-af44-4f76-93b2-0e485802eed0",
+          "id": "e602437f-3440-4a7e-b49e-bf75276dddac",
           "name": "Positive - GetAllProductsCategories || Valid request",
           "request": {
             "url": {
@@ -393,7 +380,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "5aa816b9-9d5c-41fd-bf1d-8810f9b1a4e0",
+                "id": "c67dd5ed-e3f9-45b4-ae41-02976bc922ba",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -431,7 +418,6 @@
                   "pm.test(\"Response body matches expected JSON schema\", function () {",
                   "    const schema = {",
                   "        type: \"array\",",
-                  "        minItems: 2,",
                   "        items: {",
                   "            type: \"object\",",
                   "            properties: {",
@@ -450,19 +436,19 @@
                   "    pm.expect(found).to.be.true;",
                   "});"
                 ],
-                "_lastExecutionId": "52649a31-4ccb-4cce-b3ee-1f46ab38cab3"
+                "_lastExecutionId": "0c85e86c-c4bf-458a-82b0-5648d5e4cdc9"
               }
             },
             {
               "listen": "prerequest",
               "script": {
-                "id": "2c9a0296-0b2a-45a1-954b-67083000cd19",
+                "id": "bbde6818-7800-45f1-a53d-f81a009b0097",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
                   ""
                 ],
-                "_lastExecutionId": "9218d1a0-6563-495d-a9ce-d3772f268cf8"
+                "_lastExecutionId": "0eee9d26-ce03-4b95-aec3-5a9630016f7c"
               }
             }
           ]
@@ -477,7 +463,7 @@
             "skipped": false
           },
           {
-            "assertion": "Response time logged (691ms)",
+            "assertion": "Response time logged (897ms)",
             "skipped": false
           },
           {
@@ -541,7 +527,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "41cbb595-d1b3-43f4-ac01-53622877add1",
+              "value": "414c469d-14f6-4164-9a18-829f4bde03bf",
               "system": true
             },
             {
@@ -563,13 +549,13 @@
           "method": "GET"
         },
         "response": {
-          "id": "91fae414-6800-4712-9e29-05582e291fbe",
+          "id": "00df51b0-d314-405d-a8c8-0f145c5b1c58",
           "status": "OK",
           "code": 200,
           "header": [
             {
               "key": "Date",
-              "value": "Thu, 03 Sep 2026 00:29:04 GMT"
+              "value": "Thu, 03 Sep 2026 19:55:49 GMT"
             },
             {
               "key": "Content-Type",
@@ -629,7 +615,7 @@
             },
             {
               "key": "x-ratelimit-reset",
-              "value": "1788395347"
+              "value": "1788465353"
             },
             {
               "key": "x-xss-protection",
@@ -641,7 +627,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=iX6ayIGATIsyohaPsfENa9UFIBrnTmPjwb5aWL98LCO%2Bd8JQnq6z2Bf2Q4VK6MAlIw7VWiYPDnUwM08YyUuaN3y0Rb6%2FXRYS5OZCPb2Qb0DaKbDq0k%2FX2opVZb0SXF7hB7S6%2FvkazPMFRAwc\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=GhO4Ofe8AtilDA3m%2FAXDqGLL68v6%2F%2BueR%2FXHQu4BHCTsErgjzEXVKa5ISXjoFxgN3hrxupd43cNkFVWIu5kZPdZYZYkv%2F2PEkTZxQ%2BvGQlvmIR79zeezjKi7vkQ%2BlkaX2nRWSCqiLsfZ72bg\"}]}"
             },
             {
               "key": "Nel",
@@ -653,7 +639,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a350a3521a09b14b-LOS"
+              "value": "a357506d98216062-LOS"
             }
           ],
           "stream": {
@@ -3174,22 +3160,22 @@
             ]
           },
           "cookie": [],
-          "responseTime": 691,
+          "responseTime": 897,
           "responseSize": 2512
         },
-        "id": "2b0d6582-af44-4f76-93b2-0e485802eed0"
+        "id": "e602437f-3440-4a7e-b49e-bf75276dddac"
       },
       {
         "cursor": {
-          "ref": "358a5b88-a2f0-4dee-beef-f71a249a72b4",
+          "ref": "0f8cec84-05d1-43b8-97aa-16f6b9ab6b2d",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "cd4a0fc7-9272-41d7-b6d2-60926864ef97"
+          "httpRequestId": "01562ebd-b2de-4bd1-b4a6-425949b6b9fb"
         },
         "item": {
-          "id": "96df36d0-bb54-45ee-ae2d-755e109e6b7c",
+          "id": "ce52d0ff-669c-481a-975f-6e44f394e0d4",
           "name": "Negative - GetAllProductCategories || InvalidHTTPMethod",
           "request": {
             "url": {
@@ -3210,35 +3196,23 @@
             {
               "listen": "test",
               "script": {
-                "id": "da758c4a-aca3-4181-8503-2df5c72ed0e5",
+                "id": "bc25af11-d8c1-4e43-93e4-8833929dc9c2",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
-                  "const method = pm.request.method;",
                   "",
-                  "if (method !== \"GET\") {",
+                  "pm.test(\"Status code is 404 for unsupported HTTP method\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
                   "",
-                  "    const errorResponse = {",
-                  "        status: 404,",
-                  "        error: \"Not Found\",",
-                  "        message: `Method ${method} is not allowed. Expected GET.`",
-                  "    };",
+                  "pm.test(\"Response body indicates POST method is not supported\", function () {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(body).to.include(\"Cannot POST /products/categories\");",
+                  "});",
                   "",
-                  "    pm.test(\"Status code is 404. Invalid HTTP method used\", function () {",
-                  "        pm.response.to.have.status(404);",
-                  "    });",
-                  "",
-                  "    console.log(JSON.stringify(errorResponse, null, 2));",
-                  "",
-                  "} else {",
-                  "",
-                  "    pm.test(\"HTTP method is GET\", function () {",
-                  "        pm.expect(method).to.eql(\"GET\");",
-                  "    });",
-                  "",
-                  "}"
+                  ""
                 ],
-                "_lastExecutionId": "d3768744-8af9-4f00-948d-ff29cbc4d48c"
+                "_lastExecutionId": "d2557ff7-5e27-46a4-9613-cbd1887d5e2f"
               }
             }
           ]
@@ -3253,11 +3227,15 @@
             "skipped": false
           },
           {
-            "assertion": "Response time logged (151ms)",
+            "assertion": "Response time logged (239ms)",
             "skipped": false
           },
           {
-            "assertion": "Status code is 404. Invalid HTTP method used",
+            "assertion": "Status code is 404 for unsupported HTTP method",
+            "skipped": false
+          },
+          {
+            "assertion": "Response body indicates POST method is not supported",
             "skipped": false
           }
         ],
@@ -3293,7 +3271,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "265ffc75-489d-4297-b385-c12e9f2d61d5",
+              "value": "6f1f3ed7-7b67-4769-84f6-f5204074c46c",
               "system": true
             },
             {
@@ -3320,13 +3298,13 @@
           "method": "POST"
         },
         "response": {
-          "id": "d76e1b6a-7d3b-4211-913c-6a4ae1b4a80c",
+          "id": "495a35e1-fe73-4a9f-99e6-a97a7fe3f630",
           "status": "Not Found",
           "code": 404,
           "header": [
             {
               "key": "Date",
-              "value": "Thu, 03 Sep 2026 00:29:04 GMT"
+              "value": "Thu, 03 Sep 2026 19:55:49 GMT"
             },
             {
               "key": "Content-Type",
@@ -3382,7 +3360,7 @@
             },
             {
               "key": "x-ratelimit-reset",
-              "value": "1788395347"
+              "value": "1788465353"
             },
             {
               "key": "x-xss-protection",
@@ -3394,7 +3372,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=y%2Bu0FxhQVcbVRfw4VBtop5N75lk90PnaeXqq1n6PucJ12uN427Yq3nKIJVsrWKEIDtogeekzecRCkisdRsTMYZhY7%2F48Stfo2a1j1DYlr8hGPw4ZhNG266HolWyAsFZAVLqSwThk%2Fr%2F6Ctd2\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=z7Zp4D1uzQklLil5YZTKdVwWv%2Bw2os7CvtFsLWFMD5fLhn5eWrdelxKB%2FxDHWXpcJylKwkYG8lJ8jse22cfdTQZXAjAM73a3yVc4usNXOukmh0lxYCvU0oc2MTa%2F4ostJUeFtKA9xBEHJPIG\"}]}"
             },
             {
               "key": "Nel",
@@ -3410,7 +3388,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a350a3561ae2b14b-LOS"
+              "value": "a3575071e9996062-LOS"
             }
           ],
           "stream": {
@@ -3578,22 +3556,22 @@
             ]
           },
           "cookie": [],
-          "responseTime": 151,
+          "responseTime": 239,
           "responseSize": 159
         },
-        "id": "96df36d0-bb54-45ee-ae2d-755e109e6b7c"
+        "id": "ce52d0ff-669c-481a-975f-6e44f394e0d4"
       },
       {
         "cursor": {
-          "ref": "1048a902-b6c5-46ba-bec5-b32dbaff8bfa",
+          "ref": "bfb6551e-0a78-4661-93f3-ad8140840dbf",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "db23bb02-ef5d-4c98-a2a4-ed79aaa93b3f"
+          "httpRequestId": "8a9517a3-4b97-477a-b7fc-78eda350df61"
         },
         "item": {
-          "id": "1f331f45-ca34-4724-8651-9cc6ac6cb94f",
+          "id": "b648ce73-d44c-407f-b44b-c439c5828495",
           "name": "Negative - GetAllProductCategories || InvalidEndpointPath",
           "request": {
             "url": {
@@ -3614,7 +3592,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "a6a2b599-be29-4052-997d-ddfc06e955ec",
+                "id": "fb0a9932-ddc8-42fd-9b63-ce4f248ac99d",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -3631,7 +3609,7 @@
                   "",
                   "console.log(`[Invalid Path Check] ${pm.request.url} → ${pm.response.code} ${pm.response.status}`);"
                 ],
-                "_lastExecutionId": "ca0d2dd3-19b8-4220-af26-a8937b165381"
+                "_lastExecutionId": "a742b77e-799c-4a1f-ae51-c1d0f79daccc"
               }
             }
           ]
@@ -3646,7 +3624,7 @@
             "skipped": false
           },
           {
-            "assertion": "Response time logged (165ms)",
+            "assertion": "Response time logged (230ms)",
             "skipped": false
           },
           {
@@ -3690,7 +3668,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "667d9a56-36e8-4b3f-999f-1aa1c2b6e455",
+              "value": "8bd67075-48bb-4c0a-a9f1-ee27448eef52",
               "system": true
             },
             {
@@ -3712,13 +3690,13 @@
           "method": "GET"
         },
         "response": {
-          "id": "23184cfe-8643-4acf-867b-802922804db9",
+          "id": "43ce5262-61b6-4f6c-acb5-f0bfca1c3ac2",
           "status": "Not Found",
           "code": 404,
           "header": [
             {
               "key": "Date",
-              "value": "Thu, 03 Sep 2026 00:29:04 GMT"
+              "value": "Thu, 03 Sep 2026 19:55:49 GMT"
             },
             {
               "key": "Content-Type",
@@ -3774,7 +3752,7 @@
             },
             {
               "key": "x-ratelimit-reset",
-              "value": "1788395347"
+              "value": "1788465353"
             },
             {
               "key": "x-xss-protection",
@@ -3786,7 +3764,7 @@
             },
             {
               "key": "Report-To",
-              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=i8x5Q5W4eM8jAhnXaDzfo%2Fh4Z29QY2TsIoMu4XVUgOvVwWGJ4sdqqy9vlB9W3R14qV8Q8s83UwAenNqbDzT7DAavAfCSNLpImR0BgOunsq2JWDurmeukQCrPp0y60PJZSoOlEyrKRFQ7ytqi\"}]}"
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=%2FldPpd%2FXADRXscUyX3QhPf54KqSwiCVkBOd92jB00xOgmizAIUuokGy82nHzHpRpHAPrKXI2xDOErlEYrVcQY03hTMGu0Jxrdg7aRpJGwWRbR4UJtrjsrG5GLZjxUqGrkP7rpUijfoMVbSKi\"}]}"
             },
             {
               "key": "Nel",
@@ -3802,7 +3780,7 @@
             },
             {
               "key": "CF-RAY",
-              "value": "a350a3574b07b14b-LOS"
+              "value": "a35750738a066062-LOS"
             }
           ],
           "stream": {
@@ -3865,10 +3843,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 165,
+          "responseTime": 230,
           "responseSize": 54
         },
-        "id": "1f331f45-ca34-4724-8651-9cc6ac6cb94f"
+        "id": "b648ce73-d44c-407f-b44b-c439c5828495"
       }
     ],
     "transfers": {

@@ -251,7 +251,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": ""
+      "value": "https://dummyjson.com"
     }
   ]
 }
